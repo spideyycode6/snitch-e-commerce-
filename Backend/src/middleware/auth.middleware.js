@@ -1,4 +1,5 @@
 import { verifyToken } from "../utils/jwt.utils.js";
+import userModel from "../model/user.model.js";
 
 const authMiddleware = async (req,res,next)=>{
     try {
@@ -11,9 +12,17 @@ const authMiddleware = async (req,res,next)=>{
         if(!decoded){
             return res.status(401).json({success:false,message:"invalid token"});
         }
+
         const user = await userModel.findById(decoded.id);
+
         if(!user){
             return res.status(401).json({success:false,message:"user not found"});
+        }
+
+        //condition for seller  
+
+        if(user.role !== "seller"){
+            return res.status(403).json({success:false,message:"Forbidden"});
         }
         req.user = user;
         next();
@@ -21,5 +30,6 @@ const authMiddleware = async (req,res,next)=>{
         res.status(401).json({success:false,message:"Unauthorized"});
     }
 }
+
 
 export {authMiddleware};

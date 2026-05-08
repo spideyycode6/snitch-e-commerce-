@@ -11,6 +11,10 @@ if (!process.env.JWT_EXPIRE) {
     throw new Error("Please provide JWT_EXPIRE in the environment variables");
 }
 
+if(!process.env.IMAGEKIT_PUBLIC_KEY || !process.env.IMAGEKIT_PRIVATE_KEY || !process.env.IMAGEKIT_URL_ENDPOINT){
+    throw new Error("Please provide imagekit environment variables");
+}
+
 
 export const config = {
     port: process.env.PORT || 3000,
@@ -21,5 +25,8 @@ export const config = {
     googleClientId: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     googleCallbackUrl: process.env.GOOGLE_CALLBACK_URL,
-    nodeEnv: process.env.NODE_ENV || "development"
-}
+    nodeEnv: process.env.NODE_ENV || "development",
+    imageKitPublic:process.env.IMAGEKIT_PUBLIC_KEY,
+    imageKitPrivate:process.env.IMAGEKIT_PRIVATE_KEY,
+    imageKitUrlEndpoint:process.env.IMAGEKIT_URL_ENDPOINT,
+ }
