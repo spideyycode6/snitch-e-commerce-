@@ -4,7 +4,7 @@ import { config } from "../config/config.js";
 
 export const registerUser = async (req, res) => {
 
-    const { firstName, lastName, email, password, contact } = req.body;
+    const { firstName, lastName, email, password, contact,role } = req.body;
 
     try {
         const existingUser = await userModel.findOne({ $or: [{ email }, { contact }] });
@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({ success: false, message: "User already exists" });
         }
 
-        const user = await userModel.create({ firstName, lastName, email, password, contact });
+        const user = await userModel.create({ firstName, lastName, email, password, contact, role });
         
         const token = generateToken(user._id);
         res.cookie("token", token, {

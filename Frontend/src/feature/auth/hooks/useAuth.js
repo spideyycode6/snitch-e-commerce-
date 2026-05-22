@@ -46,5 +46,10 @@ export const useAuth = () => {
         }
     }
 
-    return{registerHandler, loginHandler}
+    function logoutHandler() {
+        dispatch(setUser(null));
+        dispatch(setError(null));
+    }
+
+    return{registerHandler, loginHandler, logoutHandler}
 }

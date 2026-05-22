@@ -2,40 +2,42 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RiCheckLine } from 'react-icons/ri';
 
+/**
+ * AuthSuccess.jsx - Premium Redirect Page
+ * Style: Snitch Editorial / Nike-Inspired
+ */
 const AuthSuccess = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/');
-    }, 1800);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
-    <div className="relative min-h-screen bg-[#F5F5F5] overflow-hidden">
-      <style>{"@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap');"}</style>
+    <div className="min-h-screen bg-white flex items-center justify-center px-6 selection:bg-[#111111] selection:text-white">
+      <div className="max-w-[500px] w-full flex flex-col items-center text-center">
+        {/* Animated Check Icon */}
+        <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] bg-[#111111] rounded-full flex items-center justify-center mb-8 animate-in zoom-in duration-500">
+          <RiCheckLine className="text-white text-[40px] md:text-[48px]" />
+        </div>
 
-      <img
-        src="https://images.unsplash.com/photo-1521334884684-d80222895322?q=80&w=1800&auto=format&fit=crop"
-        alt="Editorial fashion background"
-        className="fixed inset-0 h-full w-full object-cover opacity-5 grayscale pointer-events-none"
-      />
+        {/* Hero Title */}
+        <h1 className="font-['Lexend',_sans-serif] text-[40px] md:text-[56px] font-medium leading-[0.9] tracking-[-0.04em] uppercase mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          SUCCESSFULLY<br />AUTHENTICATED
+        </h1>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-10">
-        <div className="w-full max-w-[400px] rounded-[24px] bg-white p-8 flex flex-col items-center text-center">
-          <div className="flex items-center justify-center h-16 w-16 rounded-full bg-[#111111]">
-            <RiCheckLine className="text-white text-[32px] font-semibold" />
-          </div>
+        {/* Subtitle */}
+        <p className="font-['Inter',_sans-serif] text-[#707072] text-[13px] md:text-[14px] uppercase tracking-[0.2em] font-bold animate-in fade-in duration-1000 delay-300">
+          Redirecting to Catalog
+        </p>
 
-          <h1 className="mt-6 text-[32px] font-extrabold uppercase tracking-tighter font-['Lexend',_sans-serif] text-[#111111]">
-            AUTHENTICATED
-          </h1>
-
-          <p className="mt-4 text-[14px] font-['Inter',_sans-serif] text-[#707072] leading-6">
-            You&apos;re being redirected to the app.
-          </p>
+        {/* Minimal Progress Line */}
+        <div className="mt-12 w-24 h-[2px] bg-[#F5F5F5] relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#111111] animate-progress origin-left"></div>
         </div>
       </div>
     </div>

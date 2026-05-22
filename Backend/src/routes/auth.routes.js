@@ -22,7 +22,19 @@ router.get("/google/callback",
   }), googleCallback
 );
 
+/**
+ * @route POST /api/auth/register
+ * @desc Register a new user
+ * @access Public
+ */
 router.post('/register', validateRegisterUser, registerUser);
+
+/**
+ * @route POST /api/auth/login
+ * @desc Login user and return JWT token
+ * @access Public
+ */
+
 router.post('/login', validateLoginUser, loginUser);
 
 export default router;
